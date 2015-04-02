@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Organizer</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="../style/font-awesome-4.3.0/css/font-awesome.min.css">
+
+	<script type="text/javascript" src="../js/globals.js"></script>
+	<script type="text/javascript" src="../js/utilities.js"></script>
+	<script type="text/javascript" src="../js/app.js"></script>
+	<script type="text/javascript" src="../js/layout.js"></script>
+	<script type="text/javascript" src="../js/furniture.js"></script>
+	<script type="text/javascript" src="../js/tools/draw.js"></script>
+	<script type="text/javascript" src="../js/tools/select.js"></script>
+	<script type="text/javascript" src="../js/tools/move.js"></script>
+	<script type="text/javascript" src="../js/tools/resize.js"></script>
+	<script type="text/javascript" src="../js/tools/rotate.js"></script>
+
+	<style type="text/css">
+		body {
+			font-family: 'Lato', sans-serif;
+			background-color: #E2E2E2;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			/*padding-bottom: 5em;*/
+		}
+
+		nav {
+			background-color: #2454E2;
+			color: white;
+			font-size: 3em;
+			padding: 0.5em 0;
+			font-weight: bold;
+			margin-bottom: .33em;
+		}
+
+		h4 {
+			margin-top: 4em;
+		}
+
+		h5 {
+			margin-top: 2.5em;
+			margin-bottom: .5em;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			margin: 0;
+			padding: 0;
+		}
+
+		a, a:visited {
+			text-decoration: none;
+			color: #2454E2;
+		}
+
+		#version {
+			font-size: 0.3em;
+		}
+
+		#mainCanvas {
+			background-color: white;
+			border: 1px black solid;
+		}
+
+		#homeLink, #docLink {
+			margin: 3em;
+			height: 1em;
+			display: inline-block;
+			font-weight: bold;
+		}
+
+		#layoutsPanel, #toolsPanel, #controlsPanel {
+			margin: 1em 0;
+		}
+
+		#canvasSizeContainer {
+			margin-bottom: .33em;
+		}
+
+		.fancy {
+			font-family: 'Finger Paint', cursive;
+		}
+
+		.button {
+			border-radius: 10px;
+			background-color: #2454E2;
+			color: white;
+			padding: 0.5em 1em;
+			margin: 0 0.5em;
+			vertical-align: middle;
+			cursor: pointer;
+			display: inline-block;
+		}
+
+		.canvasSize {
+			width: 5em;
+			margin-right: 2em;
+		}
+
+		.layoutButton {
+			border-radius: 10px;
+			background-color: #2454E2;
+			color: white;
+			height: 3em;
+			line-height: 3em;
+			width: 10em;
+			margin: 0 0.5em;
+			vertical-align: middle;
+			cursor: pointer;
+			display: inline-block;
+
+		}
+
+		.controlButton, .toolButton {
+			border-radius: 10px;
+			background-color: #2454E2;
+			color: white;
+			height: 3em;
+			line-height: 3em;
+			width: 3em;
+			margin: 0 0.25em;
+			vertical-align: middle;
+			cursor: pointer;
+			display: inline-block;
+		}
+
+		.furnitureButton {
+			border-radius: 10px;
+			background-color: #2454E2;
+			color: white;
+			height: 3em;
+			line-height: 3em;
+			width: 5em;
+			margin: 0 0.33em;
+			vertical-align: middle;
+			cursor: pointer;
+			display: inline-block;
+		}
+
+		.layoutButton:active, .controlButton:active, .furnitureButton:active, .button:active {
+			background-color: #0F266B;
+		}
+
+		.selected {
+			background-color: #0F266B;
+		}
+
+		.noSelect {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.push-up {
+			margin-top: -.7em;
+			margin-bottom: .7em;
+		}
+
+		.push-down {
+			margin-top: .4em;
+			margin-bottom: -.4em;
+		}
+	</style>
+</head>
+<body>
+	<nav class="fancy">
+		Organizer <span id="version">(ver 1.0)</span>
+	</nav>
+
+	<div id="canvasSizeContainer">
+		Width: <input id="canvasWidth" class="canvasSize" value="520"></input>
+		Height: <input id="canvasHeight" class="canvasSize" value="480"></input>
+		<div id="setButton" class="button noSelect">Set</div>
+	</div>
+
+	<canvas id="mainCanvas"></canvas>
+
+	<div id="layoutsPanel" class="noSelect">
+		<div class="layoutButton noSelect selected" layout="layout_1">Layout 1</div>
+		<div class="layoutButton noSelect" layout="layout_2">Layout 2</div>
+		<div class="layoutButton noSelect" layout="layout_3">Layout 3</div>
+	</div>
+
+	<div id="controlsPanel" class="noSelect">
+		<div id="refreshButton" class="controlButton noSelect" tool="refresh" title="Refresh Button"><i class="fa fa-refresh"></i></div>
+
+		<div id="exportButton" class="controlButton noSelect" tool="save" title="Export Button"><i class="fa fa-share-square-o"></i></div>
+
+		<div id="saveButton" class="controlButton noSelect" tool="save" title="Save Layout Button"><i class="fa fa-upload"></i></div>
+
+		<div id="restoreButton" class="controlButton noSelect" tool="save" title="Restore Layout Button"><i class="fa fa-download"></i></div>
+
+		<div id="deleteButton" class="controlButton noSelect" tool="delete" title="Delete Button"><i class="fa fa-trash-o"></i></div>
+	</div>
+
+
+	<div id="toolsPanel" class="noSelect">
+		<div id="drawButton" class="toolButton noSelect selected" tool="draw" title="Draw Tool"><i class="fa fa-pencil"></i></div>
+
+		<div id="selectButton" class="toolButton noSelect" tool="select" title="Select Tool"><i class="fa fa-hand-o-up"></i></div>
+
+		<div id="moveButton" class="toolButton noSelect" tool="move" title="Move Tool"><i class="fa fa-arrows"></i></div>
+
+		<div id="resizeButton" class="toolButton noSelect" tool="resize" title="Resize Tool"><i class="fa fa-arrows-alt"></i></div>
+
+		<div id="rotateButton" class="toolButton noSelect" tool="rotate" title="Rotate Tool"><i class="fa fa-rotate-left"></i></div>
+	</div>
+
+	<div id="furniturePanel" class="noSelect">
+		<div id="chairButton" class="furnitureButton noSelect selected" furniture="CHAIR">Chair</div>
+
+		<div id="tableButton" class="furnitureButton noSelect" furniture="TABLE">Table</div>
+
+		<div id="bedButton" class="furnitureButton noSelect" furniture="BED">Bed</div>
+
+		<div id="lightButton" class="furnitureButton noSelect" furniture="LIGHT">Light</div>
+	</div>
+
+	<a id="docLink" href="../index.html">Docs</a>
+	<a id="homeLink" href="../../index.html">Home</a>
+</body>
+</html>

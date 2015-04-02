@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Project 1</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
+
+	<style type="text/css">
+		body {
+			font-family: 'Lato', sans-serif;
+			background-color: #E2E2E2;
+			margin: 0;
+			padding: 0;
+			/*text-align: center;*/
+			/*padding-bottom: 5em;*/
+		}
+
+		nav {
+			background-color: #2454E2;
+			color: white;
+			font-size: 3em;
+			padding: 0.5em 0;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		h4 {
+			margin-top: 4em;
+		}
+
+		h5 {
+			margin-top: 2.5em;
+			margin-bottom: .5em;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			margin: 0;
+			padding: 0;
+		}
+
+		a, a:visited {
+			text-decoration: none;
+			color: #2454E2;
+		}
+
+		#features, #bugs {
+			list-style: circle;
+		}
+
+		#main {
+			max-width: 900px;
+			margin: auto;
+			padding: 0 5em;
+		}
+
+		#homeLink {
+			margin: 3em;
+			display: block;
+		}
+
+		.fancy {
+			font-family: 'Finger Paint', cursive;
+		}
+
+		.button {
+			border-radius: 10px;
+			background-color: #2454E2;
+			color: white;
+			height: 3em;
+			line-height: 3em;
+			width: 10em;
+			margin: auto;
+			vertical-align: middle;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		.button:active {
+			background-color: #1D46BE;
+		}
+
+		.noSelect {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.feature {
+			font-style: italic;
+			margin-top: 0.25em;
+		}
+
+		.sampleImage {
+			border: 1px solid black;
+			width: 250px;
+			height: 250px;
+			display: inline-block;
+		}
+
+		.bug {
+			font-size: 0.75em;
+			margin-top: 0.25em;
+		}
+
+		.centered {
+			text-align: center;
+		}
+
+		.light {
+			font-weight: 300;
+		}
+	</style>
+
+	<script type="text/javascript">
+		"use strict"
+
+		window.onload = init;
+
+		function init(){
+			document.getElementById("demoButton").addEventListener("click", function(){
+				window.open("./src/index.html");
+			});
+		}
+	</script>
+</head>
+<body>
+	<nav class="fancy">
+		Project 1 Design Doc
+	</nav>
+
+	<h3 class="centered fancy"><i>When you can't quite decide on a layout...</i></h3>
+
+	<div id="main">
+		<h4>High Level Concept</h4>
+
+		<p>Have you ever moved into a new space and thought <i> <span class="light">"how am I going to get all my stuff in here?"</span> </i> Or looked around your room and thought <i> <span class="light">"...it's time for a change."</span> </i> Organizer is here to help. Using Organizer, users will be able to place, move, turn, and resize furniture; change color schemes; and jump between different layouts in order to find the one that best suits their needs.</p>
+
+		<h4>Features</h4>
+
+		<p>
+			<ul id="features">
+				<li class="feature">
+					Choose from multiple room layouts to edit</li>
+				<li class="feature">
+					Choose from multiple types of furniture to place</li>
+				<li class="feature">
+					Clear a layout from all furniture and start fresh</li>
+				<li class="feature">
+					Save a layout for as an image for safe keeping</li>
+				<li class="feature">
+					Place furniture anywhere on the canvas</li>
+				<li class="feature">
+					Select any furniture in the room for modification</li>
+				<li class="feature">
+					Resize the furniture to your hearts content</li>
+				<li class="feature">
+					Furniture has full 360 Degree rotation</li>
+				<li class="feature">
+					Delete any unwanted furniture</li>
+				<li class="feature">
+					Resize the canvas to best match the deminsions you need</li>
+				<li class="feature">
+					Save your current layout and load it again at a later time</li>
+			</ul>
+		</p>
+
+		<h4>Sample Pictures</h4>
+
+		<div id="sampleImages" class="centered">
+			<img class="sampleImage" src="images/sample/bedroom.png" alt="Bedroom">
+			<img class="sampleImage" src="images/sample/livingroom.png" alt="livingroom">
+			<img class="sampleImage" src="images/sample/smiley.png" alt="smileyface">
+		</div>
+
+
+		<h4>Known Bugs</h4>
+
+		<p>
+			<ul id="bugs">
+				<li class="bug">
+					Selecting a piece of furniture doesn't take into account the furniture's rotation</li>
+				<li class="bug">
+					Furniture cannot be re-layered once drawn</li>
+			</ul>
+		</p>
+
+		<h4>Outside Credit</h4>
+
+		<p>
+			<ul>
+				<li class="feature">
+				<a href="http://stackoverflow.com/questions/5169017/how-to-remove-class-attribute-from-div">This</a> helped with class checking of elements</li>
+				<li class="feature"></li>
+				<li class="feature"></li>
+			</ul>
+		</p>
+
+
+		<div class="centered">
+			<h4>Try it out!</h4>
+
+			<div id="demoButton" class="button noSelect">Version 1.0</div>
+
+			<a id="homeLink" href="../index.html"><h4>Home</h4></a>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
